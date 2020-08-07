@@ -10,7 +10,6 @@ import com.example.imgdisp.adapters.MyAdapter
 
 class MainActivity : AppCompatActivity() {
     private val imgUrl: ArrayList<String> = ArrayList()
-    var recyclerView: RecyclerView? = null
     var manager: LinearLayoutManager? = null
     var adapter: MyAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,9 +26,11 @@ class MainActivity : AppCompatActivity() {
         imgUrl.add("https://gamedata.britishcouncil.org/sites/default/files/attachment/number-8_1.jpg")
         imgUrl.add("https://gamedata.britishcouncil.org/sites/default/files/attachment/number-9_1.jpg")
 
-        recyclerView = findViewById(R.id.recyclerView)
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         manager = LinearLayoutManager(this)
+
         recyclerView?.layoutManager = manager
+        recyclerView.setItemViewCacheSize(3)
         adapter = MyAdapter(imgUrl, this)
         recyclerView?.adapter = adapter
     }
